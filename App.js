@@ -49,6 +49,49 @@ function NicknameScreen({ navigation }) {
       </View>
     )
 }
+
+function PhoneScreen({ navigation }) {
+    const _auth = (phoneNumber) => {
+      console.log("starting auth");
+      navigation.navigate('verify')
+    }
+    const onPress = () => {
+      const validatePhoneNumber = (number) => {
+        var regexp = /^\+[0-9]?()[0-9](\s|\S)(\d[0-9]{8,16})$/
+        return regexp.test(number)
+      }
+      const payload = {
+        phoneNumber: phoneNumber,
+        valid: validatePhoneNumber(phoneNumber)
+      }
+      if (validatePhoneNumber(phoneNumber)) {
+        _auth(phoneNumber)
+      }
+      console.log(payload)
+
+    }
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.textView}>
+          <Image source={logo} style={{ width: 180, height: 75, marginBottom: 32 }} />
+          <Text style={styles.smallText}>Stay the fuck home and</Text>
+          <Text style={styles.smallText}>save the world.</Text>
+          <Text style={{color: "#6FD786",marginTop: 5, fontSize: 20, fontFamily: 'montserrat-medium'}}>Meet other heroes here.</Text>
+        </View>
+        <View style={styles.bottomViewContainer}>
+          <Text style={styles.phoneScreen_title}>Enter your phonenumber </Text>
+          <View style={styles.bottomView}>
+            <TextInput keyboardType='numeric' onChangeText={(text) => phoneNumber = text} style={styles.textField} placeholder={'+491524567893'}/>
+            <TouchableOpacity onPress={onPress} style={{ width: '25%', top: 10, right: 10, bottom:10, left:5,height: '80%', alignItems: 'center' }}>
+              <Image source={sendButton} style={{top: 10}} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        {Platform.OS != 'android' ? <KeyboardSpacer /> : null }
+      </View>
+    )
+}
 const Stack = createStackNavigator();
 
 function App() {
