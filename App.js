@@ -171,10 +171,41 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'montserrat-medium'
   },
+  phoneScreen_title: {
+    color: '#ffffff',
+    fontSize: 20,
+    fontFamily: 'montserrat-medium',
+    position: 'absolute',
+    top: 0,
+    marginTop: 20,
+    alignSelf: 'center'
+  },
+  bottomViewContainer: {
+    width: '100%',
+    height: 150,
+    backgroundColor: '#6FD786',
+    justifyContent: 'center',
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    position: 'relative'
+  },
+  verify_bottomViewContainer: {
+    width: '100%',
+    height: 200,
+    backgroundColor: '#6FD786',
+    justifyContent: 'center',
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    position: 'relative'
+  },
   bottomView: {
     flexDirection: 'row',
     width: '100%',
     height: 100,
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    left: 0,
     backgroundColor: '#6FD786',
     alignItems: 'center',
     justifyContent: 'center',
@@ -191,7 +222,21 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     fontSize: 15,
     padding: 20,
-    color: 'rgba(255,255,255,0.8)',
+    color: 'rgba(255,255,255,1)',
+    fontFamily: "montserrat-medium"
+  },
+  phoneScreen_sub: {
+    color: 'rgba(0, 0, 0, 0.3)',
+    fontSize: 18,
+    fontFamily: 'montserrat-medium',
+    position: 'absolute',
+    top: 0,
+    marginTop: 30,
+    alignSelf: 'center'
+  },
+  phoneField: {
+    fontSize: 15,
+    color: 'rgba(255,255,255,1)',
     fontFamily: "montserrat-medium"
   }
 });
