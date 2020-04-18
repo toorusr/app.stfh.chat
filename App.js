@@ -15,39 +15,40 @@ import {
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import logo from './assets/logo.png';
 import sendButton from './assets/sendButton.png';
+import PhoneInput from 'react-native-phone-input'
 
-export default props => {
-  let [fontsLoaded] = useFonts({
-    'montserrat-bold': require('./assets/fonts/montserrat-bold.ttf'),
-    'montserrat-medium': require('./assets/fonts/montserrat-medium.ttf'),
-    'montserrat-semibold': require('./assets/fonts/montserrat-semibold.ttf'),
-  });
-  const onPress = () => {
-    console.log("Clicked");
-  }
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
+function NicknameScreen({ navigation }) {
+    const onPress = () => {
+      const payload = {
+        nickname: nickName,
+      }
+      console.log(payload)
+      if (nickName.length > 1) {
+        navigation.navigate('phone')
+      }
+    }
     return (
       <View style={styles.container}>
         <View style={styles.textView}>
           <Image source={logo} style={{ width: 180, height: 75, marginBottom: 32 }} />
           <Text style={styles.smallText}>Stay the fuck home and</Text>
-          <Text style={styles.smallText}>save the world with.</Text>
+          <Text style={styles.smallText}>save the world.</Text>
           <Text style={{color: "#6FD786",marginTop: 5, fontSize: 20, fontFamily: 'montserrat-medium'}}>Meet other heroes here.</Text>
         </View>
         <View style={styles.bottomView}>
-          <TextInput style={styles.textField} placeholder={'Type your nickname...'}/>
+          <TextInput onChangeText={(text) => nickName = text} style={styles.textField} placeholder={'Type your nickname...'}/>
           <TouchableOpacity onPress={onPress} style={{ width: '25%', top: 10, right: 10, bottom:10, left:5,height: '80%', alignItems: 'center' }}>
             <Image source={sendButton} style={{top: 10}} />
           </TouchableOpacity>
         </View>
         {Platform.OS != 'android' ? <KeyboardSpacer /> : null }
       </View>
-    );
+    )
+}
   }
 }
 
