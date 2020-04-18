@@ -92,6 +92,44 @@ function PhoneScreen({ navigation }) {
       </View>
     )
 }
+
+function VerifyScreen() {
+    const _verify = (code) => {
+      console.log("verification in progress with ", code);
+    }
+    const onPress = () => {
+      const payload = {
+        code: code,
+      }
+      console.log(payload)
+      if (code.length == 6) {
+        _verify(code)
+      }
+
+    }
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.textView}>
+          <Image source={logo} style={{ width: 180, height: 75, marginBottom: 32 }} />
+          <Text style={styles.smallText}>Stay the fuck home and</Text>
+          <Text style={styles.smallText}>save the world.</Text>
+          <Text style={{color: "#6FD786",marginTop: 5, fontSize: 20, fontFamily: 'montserrat-medium'}}>Meet other heroes here.</Text>
+        </View>
+        <View style={styles.bottomViewContainer}>
+            <Text style={styles.phoneScreen_sub}>We just sent you a verification code via sms.</Text>
+          <View style={styles.bottomView}>
+            <TextInput keyboardType='numeric' onChangeText={(text) => code = text} style={styles.textField} placeholder={'123456'}/>
+            <TouchableOpacity onPress={onPress} style={{ width: '25%', top: 10, right: 10, bottom:10, left:5,height: '80%', alignItems: 'center' }}>
+              <Image source={sendButton} style={{top: 10}} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        {Platform.OS != 'android' ? <KeyboardSpacer /> : null }
+      </View>
+    )
+}
+
 const Stack = createStackNavigator();
 
 function App() {
