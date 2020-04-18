@@ -49,8 +49,31 @@ function NicknameScreen({ navigation }) {
       </View>
     )
 }
+const Stack = createStackNavigator();
+
+function App() {
+  let [fontsLoaded] = useFonts({
+    'montserrat-bold': require('./assets/fonts/montserrat-bold.ttf'),
+    'montserrat-medium': require('./assets/fonts/montserrat-medium.ttf'),
+    'montserrat-semibold': require('./assets/fonts/montserrat-semibold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="nickname" headerVisible="false">
+          <Stack.Screen name="nickname" component={NicknameScreen} />
+          <Stack.Screen name="phone" component={PhoneScreen} />
+          <Stack.Screen name="verify" component={VerifyScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
   }
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
